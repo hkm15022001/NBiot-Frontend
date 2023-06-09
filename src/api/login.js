@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../config";
 
-const login = async (username, password) => {
+const loginapi = async (username, password) => {
   const res = await axios({
     url: API_URL + "/api/v1/auth/user/login",
     method: "post",
@@ -14,4 +14,4 @@ const login = async (username, password) => {
   return result;
 };
 
-export default login;
+export default loginapi;

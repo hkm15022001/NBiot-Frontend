@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   MDBBtn,
@@ -15,7 +16,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
-import signup from "../api/signup";
+import signupapi from "../../api/signup";
 
 function Signup() {
   const [userName, setUserName] = useState("");
@@ -107,7 +108,7 @@ function Signup() {
               <MDBBtn
                 onClick={async () => {
                   try {
-                    const result = await signup(userName, email, fullName, password);
+                    const result = await signupapi(userName, email, fullName, password);
                     if (result?.status === "success") {
                       swal("Thông báo", "Đăng ký thành công", "success").then(
                         () =>

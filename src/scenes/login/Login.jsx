@@ -15,7 +15,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Button } from "antd";
-import login from "../api/login";
+import loginapi from "../../api/login";
 
 function Login() {
   const [account, setAccount] = useState("");
@@ -61,18 +61,26 @@ function Login() {
               <MDBBtn
                 onClick={async () => {
                   try {
-                    const result = await login(account, password);
+                    const result = await loginapi(account, password);
                     if (result?.status === "success") {
                       swal("Thông báo", "Đăng nhập thành công", "success")
-                      .then(()=> Cookies.set("accessToken", result?.data?.token))
-                      .then(()=> Cookies.set("uid", result?.data?.userId))
+                        .then(() =>
+                          Cookies.set("accessToken", result?.data?.token)
+                        )
+                        .then(() => Cookies.set("uid", result?.data?.userId));
                     } else {
-                      swal("Thông báo", "Đăng nhập thất bại, tài khoản hoặc mật khẩu không chính xác", "error");
+                      swal(
+                        "Thông báo",
+                        "Đăng nhập thất bại, tài khoản hoặc mật khẩu không chính xác",
+                        "error"
+                      );
                     }
-                    
                   } catch (error) {
-                    swal("Thông báo", "Đăng nhập thất bại, tài khoản hoặc mật khẩu không chính xác", "error");
-                    
+                    swal(
+                      "Thông báo",
+                      "Đăng nhập thất bại, tài khoản hoặc mật khẩu không chính xác",
+                      "error"
+                    );
                   }
                 }}
                 className="mb-4"
