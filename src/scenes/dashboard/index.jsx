@@ -1,18 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-// import { mockTransactions } from "../../data/mockData";
-// import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-// import EmailIcon from "@mui/icons-material/Email";
-// import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-// import PersonAddIcon from "@mui/icons-material/PersonAdd";
-// import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
-// import GeographyChart from "../../components/GeographyChart";
-// import BarChart from "../../components/BarChart";
-// import StatBox from "../../components/StatBox";
-// import ProgressCircle from "../../components/ProgressCircle";
-// import ChartNew from "../../components/ChartNew";
 import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import getDataApi from "../../api/get_data";
@@ -21,13 +10,6 @@ import swal from "sweetalert";
 // import GoogleMapReact from "google-map-react";
 
 const Dashboard = () => {
-  // const defaultProps = {
-  //   center: {
-  //     lat: 10.99835602,
-  //     lng: 77.01502627,
-  //   },
-  //   zoom: 11,
-  // };
   const ref = useRef();
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,7 +20,7 @@ const Dashboard = () => {
     {
       id: "rsrp",
       color: tokens("dark").greenAccent[500],
-      data: data2?.data?.data?.reverse()?.map((item) => ({
+      data: [...data2?.data?.data]?.reverse()?.map((item) => ({
         x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
         y: item?.rsrp,
       })),
@@ -46,7 +28,7 @@ const Dashboard = () => {
     {
       id: "rsrq",
       color: tokens("dark").blueAccent[300],
-      data: data2?.data?.data?.reverse()?.map((item) => ({
+      data: [...data2?.data?.data]?.reverse()?.map((item) => ({
         x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
         y: item?.rsrq,
       })),
@@ -54,7 +36,7 @@ const Dashboard = () => {
     {
       id: "sinr",
       color: tokens("dark").redAccent[200],
-      data: data2?.data?.data?.reverse()?.map((item) => ({
+      data: [...data2?.data?.data]?.reverse()?.map((item) => ({
         x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
         y: item?.sinr,
       })),
@@ -65,7 +47,7 @@ const Dashboard = () => {
       {
         id: "rsrp",
         color: tokens("dark").greenAccent[500],
-        data: data2?.data?.data?.reverse()?.map((item) => ({
+        data: [...data2?.data?.data]?.reverse()?.map((item) => ({
           x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
           y: item?.rsrp,
         })),
@@ -73,7 +55,7 @@ const Dashboard = () => {
       {
         id: "rsrq",
         color: tokens("dark").blueAccent[300],
-        data: data2?.data?.data?.reverse()?.map((item) => ({
+        data: [...data2?.data?.data]?.reverse()?.map((item) => ({
           x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
           y: item?.rsrq,
         })),
@@ -81,7 +63,7 @@ const Dashboard = () => {
       {
         id: "sinr",
         color: tokens("dark").redAccent[200],
-        data: data2?.data?.data?.reverse()?.map((item) => ({
+        data: [...data2?.data?.data]?.reverse()?.map((item) => ({
           x: moment(item?.createdDate).subtract(7,"hours").format("HH:mm"),
           y: item?.sinr,
         })),
@@ -156,29 +138,6 @@ const Dashboard = () => {
               justifyContent="space-between"
               alignItems="center"
             >
-              {/* <Box>
-                <Typography
-                  variant="h5"
-                  fontWeight="600"
-                  color={colors.grey[100]}
-                >
-                  Revenue Generated
-                </Typography>
-                <Typography
-                  variant="h3"
-                  fontWeight="bold"
-                  color={colors.greenAccent[500]}
-                >
-                  $59,342.32
-                </Typography>
-              </Box>
-              <Box>
-                <IconButton>
-                  <DownloadOutlinedIcon
-                    sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-                  />
-                </IconButton>
-              </Box> */}
             </Box>
             <Box height="250px" m="-20px 0 0 0">
               <LineChart isDashboard={true} data={data} />
@@ -232,7 +191,7 @@ const Dashboard = () => {
                 {"Latitude"}
               </Box>
             </Box>
-            {data2?.data?.data?.reverse().map((transaction, i) => (
+            {[...data2?.data?.data]?.map((transaction, i) => (
               <Box
                 key={`${transaction.txId}-${i}`}
                 display="flex"
@@ -287,14 +246,14 @@ const Dashboard = () => {
                 color={colors.greenAccent[500]}
                 sx={{ mt: "15px" }}
               >
-                {data2?.data?.data?.reverse()?.[0]?.cellId} Unit
+                {[...data2?.data?.data][0]?.cellId} Unit
               </Typography>
               <Typography
                 variant="h5"
                 // color={colors.greenAccent[500]}
                 sx={{ mt: "15px" }}
               >
-                {moment(data2?.data?.data?.reverse()?.[0]?.createdDate).subtract(7,"hours").format(
+                {moment([...data2?.data?.data][0]?.createdDate).subtract(7,"hours").format(
                   "DD-MM-YYYY HH:mm"
                 )}
               </Typography>
@@ -320,14 +279,14 @@ const Dashboard = () => {
                 color={colors.greenAccent[500]}
                 sx={{ mt: "15px" }}
               >
-                {data2?.data?.data?.reverse()?.[0]?.pci} Unit
+                {[...data2?.data?.data]?.[0]?.pci} Unit
               </Typography>
               <Typography
                 variant="h5"
                 // color={colors.greenAccent[500]}
                 sx={{ mt: "15px" }}
               >
-                {moment(data2?.data?.data?.reverse()?.[0]?.createdDate).subtract(7,"hours").format(
+                {moment([...data2?.data?.data]?.[0]?.createdDate).subtract(7,"hours").format(
                   "DD-MM-YYYY HH:mm"
                 )}
               </Typography>

@@ -74,10 +74,6 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false, data }) =>
         legend: isDashboard ? undefined : "count", // added
         legendOffset: -40,
         legendPosition: "middle",
-        scale: {
-          type: "linear", // thay đổi từ "point" thành "linear"
-          reverse: false, // thêm thuộc tính reverse và đặt giá trị là false
-        },
       }}
       enableGridX={false}
       enableGridY={false}
