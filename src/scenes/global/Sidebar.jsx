@@ -6,6 +6,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import EdgesensorHighIcon from '@mui/icons-material/EdgesensorHigh';
 // import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 // import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 // import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -92,14 +93,6 @@ const Sidebar = () => {
           </MenuItem>
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/dashboard"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -110,7 +103,7 @@ const Sidebar = () => {
             <Item
               title="Device"
               to="/team"
-              icon={<PeopleOutlinedIcon />}
+              icon={<EdgesensorHighIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -118,7 +111,7 @@ const Sidebar = () => {
               title="Logout"
               // to="/team"
               
-              icon={<PeopleOutlinedIcon />}
+              icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={()=> {navigate("/login"); Cookies.remove("accessToken"); Cookies.remove("uid")}}
             />
